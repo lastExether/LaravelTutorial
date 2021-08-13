@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class RegisterController extends Controller
 {
     public function index(){
+
       return view('auth.register');
       //En la linea de arriba lo que hacemos es pasarle la dirección donde está
       //la vista que queremos mostrar
@@ -20,6 +21,8 @@ class RegisterController extends Controller
       //dd($request->email, $request->name, $request->email, $request->password);
       //die dump, escribe lo que pongas en el paréntesis
       //VALIDATION
+
+
       $this->validate($request, [
         'name' => 'required|max:128',
         'username' => 'required|max:25',
@@ -33,5 +36,15 @@ class RegisterController extends Controller
         'email' => $request->email,
         'password'=> Hash::make($request->password)
       ]);
+
+      /*auth()->attempt([
+        'email' => $request->email,
+        'password' => $request->pasword,
+      ]);*/
+
+      auth()->attempt($request->only('email', 'password'));
+
+      return redirect()->route('dashboard');
+
     }
 }

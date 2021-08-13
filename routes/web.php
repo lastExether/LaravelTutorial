@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\DashboardController;
 //Para aplicar correctamente una ruta necesitas importar la clase como aquí arriba
 
-
+Route::get('/dashboard', [DashboardController::class, 'index']) -> name('dashboard');
 Route::get('/register', [RegisterController::class, 'index']) -> name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 //Route busca la vista 'register' en la clase RegisterController dentro de la función index
