@@ -22,7 +22,7 @@
            <label for="username" class="sr-only">Username</label>
            <input type="text" name="username" id="regUsername" placeholder="Your Username"
            class="bg-gray-100 border-2 w-full p-4 rounded-lg
-           @error('username')border-red-500 @enderror"" value="{{ old('username') }}">
+           @error('username')border-red-500 @enderror" value="{{ old('username') }}">
            @error('username')
              <div class="text-red-500 mt-2 text-sm">
                {{ $message }}
@@ -57,7 +57,7 @@
          <div class="mb-4">
            <label for="password_confirmation" class="sr-only">Password again</label>
            <input type="password" name="password_confirmation" id="regPasswordConf" placeholder="Repeat your Password"
-           class="bg-gray-100 border-2 w-full p-4 rounded-lg"
+           class="bg-gray-100 border-2 w-full p-4 rounded-lg
            @error('password_confirmation')border-red-500 @enderror" value="">
            @error('password_confirmation')
              <div class="text-red-500 mt-2 text-sm">

@@ -2,12 +2,28 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\DashboardController;
 //Para aplicar correctamente una ruta necesitas importar la clase como aquí arriba
 
-Route::get('/dashboard', [DashboardController::class, 'index']) -> name('dashboard');
+Route::get('/', function(){
+  return view('home');
+})->name('home');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])
+-> name('dashboard')
+-> middleware('auth');
+
 Route::get('/register', [RegisterController::class, 'index']) -> name('register');
 Route::post('/register', [RegisterController::class, 'store']);
+
+Route::get('/login', [LoginController::class, 'index']) -> name('login');
+Route::post('/login', [LoginController::class, 'store']);
+
+Route::post('/logout', [LogoutController::class, 'store']) -> name('logout');
+
+//Para guardar información en la BDD se utiliza post, para todo lo demás usamos get
 //Route busca la vista 'register' en la clase RegisterController dentro de la función index
 //Básicamente le pasamos la dirección de lo que queremos mostrar
 //Las vistas se escriben en la dirección, ejemplo localhost/register
