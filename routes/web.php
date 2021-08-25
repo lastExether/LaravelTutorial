@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Bitacoras\mttoPrevController;
 use App\Http\Controllers\DashboardController;
 //Para aplicar correctamente una ruta necesitas importar la clase como aquí arriba
 
@@ -14,6 +15,8 @@ Route::get('/', function(){
 Route::get('/dashboard', [DashboardController::class, 'index'])
 -> name('dashboard')
 -> middleware('auth');
+
+Route::get('/mttoPreventivo', [mttoPrevController::class, 'index']) -> name('mttoPreventivo');
 
 Route::get('/register', [RegisterController::class, 'index']) -> name('register');
 Route::post('/register', [RegisterController::class, 'store']);
